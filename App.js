@@ -1,25 +1,29 @@
 import React, {Component} from 'react';
-import {Text ,TextInput, View} from 'react-native';
+import {Text, Image, Alert, TextInput, View, Button} from 'react-native';
 
-
-
-// class Mobil extends Component {
-//   render() {
-//     return (
-//       <View style={{margin:5}}>
-
-//         {/* this is props <Text>Mobilku {this.props.name}</Text> */}
-//       </View>
-//     );
-//   }
-// }
+class Mobil extends Component {
+  render() {
+    return (
+      <View>
+        <Button
+          style={{color:'white', margin:5}}
+          onPress={()=> 
+            Alert.alert(this.props.name)
+          }
+          title={this.props.name} 
+          >
+      </Button>
+      </View>
+    );
+  }
+}
 
 class App extends Component {
   constructor(){
     super()
     this.state = {
-      name:'',
-
+      name:'Ferrari',
+      jenis:'Roda 4',
     }
   }
 
@@ -30,10 +34,45 @@ class App extends Component {
         <Mobil name="Buggati"/>
         <Mobil name="Audi"/>
         <Mobil name="Lamborgini"/> */}
-        <TextInput
-          onChangeText={(text) => {this.setState({nama:text})}}
-        />
-        <Text>Jenis Mobil {this.state.nama}</Text>
+        <View style={{flex:1, margin:20}}>
+          <Image style={{width:'100%', height:150, margin:5}} source={{uri:'https://www.inovex.de/blog/wp-content/uploads/2018/03/react-native.png'}}/>
+        </View>
+
+        <View
+          backgroundColor='dodgerblue'
+          style={{flex:1, margin:5}}>
+          <TextInput
+            placeholderTextColor='white'
+            selectionColor='white'
+            placeholder="Masukkan Nama Mobil"
+            onChangeText={
+              (text) => {this.setState({name:text}),color='white'}
+            }
+          />
+          <Text style={{color:'white', margin:5}}>Jenis Mobil {this.state.name}</Text>  
+        </View>
+
+        <View
+          backgroundColor='fuchsia'
+          style={{flex:1, margin:5}}>
+          <TextInput
+            placeholderTextColor='white'
+            placeholder="Masukkan Jenis Mobil"
+            onChangeText={(text) => {this.setState({jenis:text})}}
+          />
+          <Text style={{color:'white', margin:5}}>Jenis Mobil {this.state.jenis}</Text>  
+        </View>
+
+        <View
+          backgroundColor='gold'
+          style={{flex:1, margin:5}}>
+          <Mobil name="Ferrari" />
+          <Mobil name="Audi"/>
+          <Mobil name="Lamborgini"/>
+          <Mobil name="Chevrolet"/>
+          <Mobil name="Buggati"/>
+        </View>
+        
       </View>
     );
   }
